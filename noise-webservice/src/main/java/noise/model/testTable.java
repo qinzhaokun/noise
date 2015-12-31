@@ -1,4 +1,4 @@
-package org.noise.common.model;
+package noise.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

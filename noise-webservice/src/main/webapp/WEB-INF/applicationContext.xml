@@ -16,7 +16,7 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.2.xsd">
 
 <context:annotation-config/>
-<context:component-scan base-package="zqin.*"/>
+<context:component-scan base-package="noise.*"/>
 <bean id="defaultPersistenceUnitManager" class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
 <property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml"/>
 
@@ -43,7 +43,7 @@ http://www.springframework.org/schema/data/jpa http://www.springframework.org/sc
 <!-- <tx:annotation-driven transaction-manager="mysqltransactionManager" proxy-target-class="false"/>
 -->
 <!-- 自动扫描并注入Spring Data JPA -->  
-    <jpa:repositories base-package="zqin.repository" entity-manager-factory-ref="mysqlEntityManagerFactory" transaction-manager-ref="transactionManager">  
+    <jpa:repositories base-package="noise.repository" entity-manager-factory-ref="mysqlEntityManagerFactory" transaction-manager-ref="transactionManager">  
     </jpa:repositories>  
     <!-- 配置事务管理器 -->  
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">  

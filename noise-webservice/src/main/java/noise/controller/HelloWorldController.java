@@ -1,12 +1,13 @@
-package controller;
+package noise.controller;
 
-import org.noise.common.kafka.NoiseProducer;
-import org.noise.common.repository.ITestTableDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import noise.repository.ITestTableDao;
+
 
  
 @Controller
@@ -23,11 +24,12 @@ public class HelloWorldController {
 		
 		//testTable test = iTestTableDao.findOne(id);
 		//System.out.println(test.getName());
+		System.out.println("dd");
 		ModelAndView mv = new ModelAndView("helloworld");
 		mv.addObject("message", message);
 		mv.addObject("name", name);
-		NoiseProducer noiseProducer = new NoiseProducer();
-		noiseProducer.sendNoiseData();
+		//NoiseProducer noiseProducer = new NoiseProducer();
+		//noiseProducer.sendNoiseData();
 		//mv.addObject("fromDatabase", test.getName());
 		return mv;
 	}
