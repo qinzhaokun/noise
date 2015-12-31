@@ -1,9 +1,9 @@
 package noise.controller;
 
+import org.noise.common.kafka.NoiseProducer;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import noise.model.testTable;
@@ -14,13 +14,13 @@ import noise.model.testTable;
 public class NoiseController {
 	
 	@RequestMapping("/upload")
-	public ModelAndView showMessage(
-			 @RequestBody testTable data) {
+	public ModelAndView uploadNoiseDataToKafka() {
 		
-		//testTable test = iTestTableDao.findOne(id);
-		System.out.println(data.getName());
+		String url = "www.example.com";
+		NoiseProducer noiseProducer = new NoiseProducer();
+		boolean isSuccessed = noiseProducer.sendNoiseData(url);
 		ModelAndView mv = new ModelAndView("helloworld");
-		mv.addObject("name", data.getName());
+		mv.addObject("name", isSuccessed);
 		return mv;
 	}
 }
