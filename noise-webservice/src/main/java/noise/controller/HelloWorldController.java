@@ -22,15 +22,11 @@ public class HelloWorldController {
 			@RequestParam(value = "name", required = false, defaultValue = "World") String name,
 			@RequestParam(value = "id", required = false, defaultValue = "1") Long id) {
 		
-		//testTable test = iTestTableDao.findOne(id);
-		//System.out.println(test.getName());
+		
 		System.out.println("dd");
 		ModelAndView mv = new ModelAndView("helloworld");
 		mv.addObject("message", message);
 		mv.addObject("name", name);
-		//NoiseProducer noiseProducer = new NoiseProducer();
-		//noiseProducer.sendNoiseData();
-		//mv.addObject("fromDatabase", test.getName());
 		return mv;
 	}
 }

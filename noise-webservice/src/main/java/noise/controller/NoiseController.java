@@ -34,11 +34,13 @@ public class NoiseController {
 	public ModelAndView getNoiseLevel(
 			@RequestParam(value = "id", required = false, defaultValue = "") Long id) {
 		
+		ModelAndView mv = new ModelAndView("helloworld");
 		if(!id.equals("")){
 			NoiseData noiseData = noiseService.getNoiseDataById(id);
 			System.out.println(noiseData.getNoiseLevel());
+			mv.addObject("noiseLevel",noiseData.getNoiseLevel());
 		}
-		ModelAndView mv = new ModelAndView("helloworld");
+		
 		mv.addObject("name", "zqin");
 		return mv;
 	}

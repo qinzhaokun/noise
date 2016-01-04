@@ -36,5 +36,5 @@ public class Time {
 	
 	@JsonIgnore
     @OneToMany(mappedBy = "time", cascade = {}, fetch = FetchType.LAZY)
-    private List<NoiseData> noiseDatas = new ArrayList<>();
+    private List<NoiseData> noiseDatas = new ArrayList<NoiseData>();
 }

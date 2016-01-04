@@ -62,5 +62,5 @@ public class Grid {
 	
 	@JsonIgnore
     @OneToMany(mappedBy = "grid", cascade = {}, fetch = FetchType.LAZY)
-    private List<NoiseData> noiseDatas = new ArrayList<>();
+    private List<NoiseData> noiseDatas = new ArrayList<NoiseData>();
 }

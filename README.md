@@ -62,3 +62,13 @@ solution :
 > Select "Further configuration available…" and set web.xm  "src/main/webapp".
 
 > click "Apply".
+
+6: can not connect to mysql database:
+
+solution: use root login in mysql, use command:
+
+    ALL PRIVILEGES ON *.* TO root@"192.168.1.110" IDENTIFIED BY "noise";
+    
+    flush privileges;
+    
+The IP address is your developed computer IP.
