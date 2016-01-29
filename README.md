@@ -72,3 +72,13 @@ solution: use root login in mysql, use command:
     flush privileges;
     
 The IP address is your developed computer IP.
+
+7: Kafka problem: when send message to Kafka, error is:
+
+    Failed to send messages after 3 tries.
+    
+solution: modify the kafka config in /config/server.properties and set:
+
+    advertised.host.name=192.168.1.84
+    
+远程连接的话 是根据这个配置来找broker的，默认是localhost ，所以如果不是本机运行的话 应该设置此值 来确保通信畅通。

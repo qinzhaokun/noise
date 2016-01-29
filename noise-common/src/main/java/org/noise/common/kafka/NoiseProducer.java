@@ -11,9 +11,10 @@ public class NoiseProducer {
 	public boolean sendNoiseData(String noiseData){
 		boolean isSuccessed = true;
 		try{
-			int events=100;
+			int events=10;
 			// 设置配置属性
 			Properties props = new Properties();
+			props.put("zk.connect", "192.168.1.84:2181");  
 			props.put("metadata.broker.list","192.168.1.84:9092");
 			props.put("serializer.class", "kafka.serializer.StringEncoder");
 			// key.serializer.class默认为serializer.class
@@ -24,25 +25,19 @@ public class NoiseProducer {
 			props.put("request.required.acks", "1");
 			ProducerConfig config = new ProducerConfig(props);
  
-			// 创建producer
+			// create producer
 			Producer<String, String> producer = new Producer<String, String>(config);
-			// 产生并发送消息
+			// send message to Kafka
 			long start=System.currentTimeMillis();
-			for (long i = 0; i < events; i++) {
-				long runtime = new Date().getTime();
-				String ip = "192.168.1.110" + i;//rnd.nextInt(255);
-				String msg = runtime + "," + noiseData + "," + ip;
-				//如果topic不存在，则会自动创建，默认replication-factor为1，partitions为0
-				KeyedMessage<String, String> data = new KeyedMessage<String, String>(
-                    "noise", ip, msg);
-				producer.send(data);
-			}
-			System.out.println("耗时:" + (System.currentTimeMillis() - start));
-			// 关闭producer
+			KeyedMessage<String, String> data = new KeyedMessage<String, String>(
+                    "noise", noiseData);
+			producer.send(data);
+			System.out.println("Running time:" + (System.currentTimeMillis() - start));
+			// close producer
 			producer.close();
 		}
 		catch(Exception ex) {
-			System.out.println("输入有误" + ex.getMessage());
+			System.out.println("Input error : " + ex.getMessage());
 			isSuccessed = false;
 		}
 		

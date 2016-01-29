@@ -33,7 +33,7 @@ public class WordCounter extends BaseRichBolt{
 	public void execute(Tuple input) {
 		String word = input.getString(0);
         int count = input.getInteger(1);
-        LOG.info("RECV[splitter -> counter] " + word + " : " + count);
+        System.out.println("RECV[splitter -> counter] " + word + " : " + count);
         AtomicInteger ai = this.counterMap.get(word);
         if(ai == null) {
              ai = new AtomicInteger();
@@ -41,7 +41,7 @@ public class WordCounter extends BaseRichBolt{
         }
         ai.addAndGet(count);
         collector.ack(input);
-        LOG.info("CHECK statistics map: " + this.counterMap);
+        System.out.println("CHECK statistics map: " + this.counterMap);
 	}
 
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
@@ -50,11 +50,11 @@ public class WordCounter extends BaseRichBolt{
 	
 	@Override
     public void cleanup() {
-         LOG.info("The final result:");
+		System.out.println("The final result:");
          Iterator<Entry<String, AtomicInteger>> iter = this.counterMap.entrySet().iterator();
          while(iter.hasNext()) {
               Entry<String, AtomicInteger> entry = iter.next();
-              LOG.info(entry.getKey() + "\t:\t" + entry.getValue().get());
+              System.out.println(entry.getKey() + "\t:\t" + entry.getValue().get());
          }
         
     }

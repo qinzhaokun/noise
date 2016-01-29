@@ -23,7 +23,7 @@ public class MyKafkaTopology {
 
     
      public static void main(String[] args) throws AlreadyAliveException, InvalidTopologyException, InterruptedException, AuthorizationException {
-          String zks = "localhost:2181";
+          String zks = "192.168.1.84:2181";
           String topic = "noise";
           String zkRoot = "/storm"; // default zookeeper root configuration for storm
           String id = "word";
@@ -32,12 +32,12 @@ public class MyKafkaTopology {
           SpoutConfig spoutConf = new SpoutConfig(brokerHosts, topic, zkRoot, id);
           spoutConf.scheme = new SchemeAsMultiScheme(new StringScheme());
           //spoutConf.forceFromStart = false;
-          spoutConf.zkServers = Arrays.asList(new String[] {"localhost"});
+          spoutConf.zkServers = Arrays.asList(new String[] {"192.168.1.84"});
           spoutConf.zkPort = 2181;
          
           TopologyBuilder builder = new TopologyBuilder();
-          builder.setSpout("kafka-reader", new KafkaSpout(spoutConf), 5); // Kafka我们创建了一个5分区的Topic，这里并行度设置为5
-          builder.setBolt("word-splitter", new KafkaWordSplitter(), 2).shuffleGrouping("kafka-reader");
+          builder.setSpout("kafka-reader", new KafkaSpout(spoutConf), 1); // Kafka我们创建了一个5分区的Topic，这里并行度设置为5
+          builder.setBolt("word-splitter", new KafkaWordSplitter(), 1).shuffleGrouping("kafka-reader");
           builder.setBolt("word-counter", new WordCounter()).fieldsGrouping("word-splitter", new Fields("word"));
          
           Config conf = new Config();
@@ -49,6 +49,7 @@ public class MyKafkaTopology {
                conf.setNumWorkers(3);
                StormSubmitter.submitTopologyWithProgressBar(name, conf, builder.createTopology());
           } else {
+        	  System.out.println("local");
                conf.setMaxTaskParallelism(3);
                LocalCluster cluster = new LocalCluster();
                cluster.submitTopology(name, conf, builder.createTopology());

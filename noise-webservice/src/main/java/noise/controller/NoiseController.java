@@ -1,34 +1,35 @@
 package noise.controller;
 
-import org.noise.common.kafka.NoiseProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import noise.model.NoiseData;
-import noise.model.testTable;
 import noise.service.NoiseService;
 
 
 
-@Controller
+@RestController
 public class NoiseController {
 	
 	@Autowired
 	private NoiseService noiseService;
 	@RequestMapping("/upload")
-	public ModelAndView uploadNoiseDataToKafka() {
-		
-		String url = "www.example.com";
-		NoiseProducer noiseProducer = new NoiseProducer();
-		boolean isSuccessed = noiseProducer.sendNoiseData(url);
+	public ModelAndView uploadNoiseDataToKafka(
+			@RequestParam(required = true) String noiseData) {
+		boolean isSuccessed = noiseService.uploadNosieDataToKafka(noiseData);
 		ModelAndView mv = new ModelAndView("helloworld");
-		mv.addObject("name", isSuccessed);
+		mv.addObject("isSuccessed", isSuccessed);
+		mv.addObject("reward",4);
 		return mv;
 	}
+	
 	
 	@RequestMapping("/noiselevel")
 	public ModelAndView getNoiseLevel(

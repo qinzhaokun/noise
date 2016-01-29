@@ -25,10 +25,10 @@ public class KafkaWordSplitter extends BaseRichBolt{
 
 	public void execute(Tuple input) {
 		String line = input.getString(0);
-        LOG.info("RECV[kafka -> splitter] " + line);
+        System.out.println("RECV[kafka -> splitter] " + line);
         String[] words = line.split("\\s+");
         for(String word : words) {
-             LOG.info("EMIT[splitter -> counter] " + word);
+        	System.out.println("EMIT[splitter -> counter] " + word);
              collector.emit(input, new Values(word, 1));
         }
         collector.ack(input);
