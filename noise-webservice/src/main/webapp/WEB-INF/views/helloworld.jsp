@@ -9,7 +9,7 @@
 	<center>
 		<h2>Hello World</h2>
 		<h2>
-			${message} ${name} ${noiseLevel} 
+			${message} ${name} ${noiseLevel} ${noiseLevels}
 		</h2>
 	</center>
 </body>

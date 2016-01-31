@@ -190,6 +190,12 @@
 			<scope>compile</scope> 
 		</dependency>
    		
+   		<dependency>
+			<groupId>org.apache.storm</groupId>
+			<artifactId>storm-hdfs</artifactId>
+			<version>0.10.0</version>
+		</dependency>
+   		
 		
 		
   </dependencies>

@@ -12,6 +12,7 @@ import noise.repository.ITimeDao;
 import org.noise.common.kafka.NoiseProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class NoiseService {
@@ -34,6 +35,11 @@ public class NoiseService {
 	
 	public List<NoiseData> getNoiseDataByTime(Time time){
 		return iNoiseDataDao.findByTime(time);
+	}
+	
+	@Transactional
+	public void saveNoiseData(NoiseData noiseDatas){
+		iNoiseDataDao.save(noiseDatas);
 	}
 	
 	public boolean uploadNosieDataToKafka(String noiseData){

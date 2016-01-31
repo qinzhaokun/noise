@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import noise.repository.ITestTableDao;
 
 
  
@@ -15,8 +14,7 @@ import noise.repository.ITestTableDao;
 public class HelloWorldController {
 	String message = "Welcome to Spring MVC!";
 	
-	 @Autowired
-	 protected ITestTableDao iTestTableDao;
+	
  
 	@RequestMapping("/hello")
 	public ModelAndView showMessage(

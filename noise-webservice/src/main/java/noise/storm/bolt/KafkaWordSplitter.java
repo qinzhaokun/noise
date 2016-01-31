@@ -1,4 +1,4 @@
-package org.noise.common.storm.bolt;
+package noise.storm.bolt;
 
 import java.util.Map;
 

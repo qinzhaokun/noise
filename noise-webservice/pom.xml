@@ -10,7 +10,6 @@
   <groupId>cn.edu.sjtu</groupId>
   <artifactId>noise-webservice</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
   <name>noise-webservice Maven Webapp</name>
   <url>http://maven.apache.org</url>
   
@@ -36,4 +35,5 @@
   <build>
     <finalName>noise-webservice</finalName>
   </build>
+  <packaging>war</packaging>
 </project>

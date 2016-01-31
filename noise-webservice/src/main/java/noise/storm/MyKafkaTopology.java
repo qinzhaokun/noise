@@ -1,9 +1,9 @@
-package org.noise.common.storm;
+package noise.storm;
 
 import java.util.Arrays;
-import org.noise.common.storm.bolt.KafkaWordSplitter;
-import org.noise.common.storm.bolt.WordCounter;
 
+import noise.storm.bolt.KafkaWordSplitter;
+import noise.storm.bolt.WordCounter;
 import storm.kafka.BrokerHosts;
 import storm.kafka.KafkaSpout;
 import storm.kafka.SpoutConfig;

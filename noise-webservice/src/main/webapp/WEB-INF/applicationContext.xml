@@ -16,7 +16,7 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.2.xsd">
 
 <context:annotation-config/>
-<context:component-scan base-package="noise.*"/>
+<context:component-scan base-package="noise.model,noise.repository,noise.service,noise.controller"/>
 <bean id="defaultPersistenceUnitManager" class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
 <property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml"/>
 
