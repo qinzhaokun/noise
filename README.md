@@ -67,7 +67,7 @@ solution :
 
 solution: use root login in mysql, use command:
 
-    ALL PRIVILEGES ON *.* TO root@"192.168.1.110" IDENTIFIED BY "noise";
+    GRANT ALL PRIVILEGES ON *.* TO root@"192.168.1.110" IDENTIFIED BY "noise";
     
     flush privileges;
     
